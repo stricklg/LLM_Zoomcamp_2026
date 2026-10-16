@@ -21,6 +21,8 @@ services:
       POSTGRES_DB: kestra
       POSTGRES_USER: kestra
       POSTGRES_PASSWORD: k3str4
+    ports:
+      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 5s
@@ -32,8 +34,7 @@ services:
     pull_policy: always
     user: "root"
     command: server standalone
-    networks:
-      - kestra_net
+    network_mode: host
     volumes:
       - kestra_data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
@@ -45,7 +46,7 @@ services:
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
-            url: jdbc:postgresql://kestra-postgres:5432/kestra
+            url: jdbc:postgresql://localhost:5432/kestra
             driverClassName: org.postgresql.Driver
             username: kestra
             password: k3str4
@@ -71,14 +72,6 @@ services:
             gemini:
               model-name: gemini-3.8-flash
               api-key: ${GEMINI_API_KEY}
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    dns:
-      - 8.8.8.8
-      - 1.1.1.1
-    extra_hosts:
-      - "api.kestra.io:34.77.61.247"
     depends_on:
       kestra-postgres:
         condition: service_healthy
