@@ -1,0 +1,29 @@
+[project]
+name = "llm-zoomcamp-onnx"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "stricklg", email = "geoff.strickland9@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "minsearch>=0.2.0",
+    "numpy>=2.5.3",
+    "onnxruntime>=1.30.0",
+    "tokenizers>=0.23.2",
+    "tqdm>=4.70.1",
+]
+
+[project.scripts]
+llm-zoomcamp-onnx = "llm_zoomcamp_onnx:main"
+
+[build-system]
+requires = ["uv_build>=0.12.20,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "huggingface-hub>=1.33.0",
+    "jupyter>=1.1.1",
+]

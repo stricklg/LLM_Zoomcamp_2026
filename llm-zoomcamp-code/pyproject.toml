@@ -1,0 +1,39 @@
+[project]
+name = "llm-zoomcamp-code"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "stricklg", email = "geoff.strickland9@gmail.com" }
+]
+requires-python = ">=3.10, <3.13"
+dependencies = [
+    "google-genai>=2.25.0",
+    "ipykernel>=7.3.0",
+    "minsearch>=0.2.0",
+    "notebook>=7.6.3",
+    "psycopg[binary]>=3.3.6",
+    "python-dotenv>=1.2.4",
+    "sentence-transformers>=6.1.0",
+    "sqlitesearch>=0.3.0",
+]
+
+[project.scripts]
+llm-zoomcamp-code = "llm_zoomcamp_code:main"
+
+[build-system]
+requires = ["uv_build>=0.12.20,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+]
