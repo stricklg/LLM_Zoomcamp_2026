@@ -1,0 +1,5 @@
+.env
+faq_vectors2.db
+faq_vectors2.db-shm
+faq_vectors2.db-wal
+__pycache__

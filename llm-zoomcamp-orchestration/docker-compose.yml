@@ -69,11 +69,16 @@ services:
           ai:
             type: gemini
             gemini:
-              model-name: gemini-2.5-flash
+              model-name: gemini-3.8-flash
               api-key: ${GEMINI_API_KEY}
     ports:
       - "8080:8080"
       - "8081:8081"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    extra_hosts:
+      - "api.kestra.io:34.77.61.247"
     depends_on:
       kestra-postgres:
         condition: service_healthy
